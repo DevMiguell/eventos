@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import firebase from '../../config/firibase'
+import firebase from '../../config/firebase'
 import 'firebase/auth'
 
 import './usuario-novo.css'

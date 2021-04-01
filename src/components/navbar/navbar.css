@@ -1,11 +1,17 @@
 .navbar{
     background-color: #614ea6;
-    padding: 1rem;
+    padding: 1.5rem 3rem;
+}
+
+.nav-item:first-child {
+    margin-left: 1rem;
 }
 
 .nav-item a{
     color: #fff;
     transition: .1s ease-in;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
 }
 
 .nav-item a:hover{

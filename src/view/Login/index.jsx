@@ -1,53 +1,60 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import './login.css';
+import { Link, Redirect } from 'react-router-dom';
 
-import firebase from '../../config/firibase'
-import 'firebase/auth'
+import firebase from '../../config/firebase';
+import 'firebase/auth';
 
-import './login.css'
-import Navbar from '../../components/navbar'
+import { useSelector, useDispatch } from 'react-redux';
 
 function Login() {
-    const [email, setEmail] = useState()
-    const [senha, setSenha] = useState()
-    const [msgTipo, setMsgTipo] = useState()
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
+    const [msgTipo, setMsgTipo] = useState();
+
+    const dispatch = useDispatch();
+
 
     function logar() {
-        // pegamos o firebase e setamos dentro dele o usuario e senha e pagamos o resultado com o .then e imprimimos para o usuario
-        firebase.auth().signInWithEmailAndPassword(email, senha).then(resutado => {
-            // Deu tudo correto 
-            setMsgTipo('sucesso')
+
+        firebase.auth().signInWithEmailAndPassword(email, senha).then(resultado => {
+            setMsgTipo('sucesso') 
+            dispatch({ type: 'LOG_IN', usuarioEmail: email }) 
         }).catch(erro => {
-            // Deu errado vai aparecer o erro
             setMsgTipo('erro')
-        })
+        });
+
     }
+
     return (
         <>
-            <Navbar />
             <div className="login-content d-flex">
+
+                {useSelector(state => state.usuarioLogado) > 0 ? <Redirect to='/' /> : null}
+
                 <form className="form-signin mx-auto">
                     <div className="text-center mb-4">
-                        <h1 className="h3 mb-3 fw-normal text-white font-weight-bold">Login</h1>
+                        <i class="far fa-smile-wink text-white fa-5x"></i>
+                        <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold">Login</h1>
                     </div>
 
-                    {/* Pegando evento/oque esta escrito com o (e) e setando no setEmail */}
-                    <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control my-2" id="floatingInput" placeholder="Email" />
 
-                    <input onChange={(e) => setSenha(e.target.value)} type="password" className="form-control my-2" id="floatingPassword" placeholder="Senha" />
+                    <input onChange={(e) => setEmail(e.target.value)} type="email" id="inputEmail" class="form-control my-2" placeholder="Email" />
+                    <input onChange={(e) => setSenha(e.target.value)} type="password" id="inputPassword" class="form-control my-2" placeholder="Senha" />
 
-                    <button onClick={logar} className="w-100 btn btn-lg btn-login" type="button">Logar</button>
 
-                    <div className="msg-login text-white text-center my-4">
-                        {/* Se oque estiver dentro de msgTipo for sucesso &&(entao) mostre ... */}
-                        {msgTipo === 'sucesso' && <span><strong>WoW! </strong> Você esta conectado</span>}
-                        {msgTipo === 'erro' && <span><strong>Ops! </strong> Verifique se a senha ou o usuario esta correto</span>}
+                    <button onClick={logar} class="w-100 btn btn-lg btn-login" type="button">Logar</button>
+
+                    <div className="msg-login text-white text-center my-5">
+                        {/* Vou manter a mensagem para fins didaticos  */}
+                        {msgTipo === 'sucesso' && <span><strong>WoW!</strong> Você está conectado!; </span>}
+                        {msgTipo === 'erro' && <span><strong>Ops!</strong> Verifique se a senha ou usuário estão corretos!; </span>}
                     </div>
 
-                    <div className="opcoes-login mt-4 text-center">
-                        <a href="#" className="mx-2">Recuperar Senha</a>
-                        <span className="text-white">|</span>
-                        <Link to="novousuario" className="mx-2">Cadastrar</Link>
+                    <div className="opcoes-login mt-5 text-center">
+                        <Link to="/usuariorecuperarsenha" className="mx-2">Recuperar Senha</Link>
+                        <span className="text-white"> | </span>
+                        <Link to='novousuario' className="mx-2">Quero Cadastrar</Link>
                     </div>
                 </form>
             </div>
@@ -55,4 +62,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;

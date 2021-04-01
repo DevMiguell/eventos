@@ -4,6 +4,7 @@ import firebase from '../../config/firibase'
 import 'firebase/auth'
 
 import './usuario-novo.css'
+import Navbar from '../../components/navbar'
 
 const NovoUsuario = () => {
     const [email, setEmail] = useState()
@@ -44,25 +45,28 @@ const NovoUsuario = () => {
     }
 
     return (
-        <div className="form-cadastro">
-            <form className="text-center form-login mx-auto mt-5">
-                <h1 className="h3 mb-3 text-black font-weight-bold">
-                    Cadastro
+        <>
+            <Navbar />
+            <div className="form-cadastro login-content d-flex">
+                <form className="text-center form-signin form-login mx-auto">
+                    <h1 className="h3 mb-4 text-white font-weight-bold">
+                        Cadastrar
                 </h1>
-                <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control my-2" placeholder="Email" />
-                <input onChange={(e) => setSenha(e.target.value)} type="password" className="form-control my-2" placeholder="Senha" />
+                    <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control my-2" placeholder="Email" />
+                    <input onChange={(e) => setSenha(e.target.value)} type="password" className="form-control my-2" placeholder="Senha" />
 
-                {
-                    carregando ? <div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>
-                    : <button onClick={cadastrar} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-cadastro">Cadastrar</button>
-                }
-                <div className="msg-login text-black text-center my-2">
-                    {/* Se oque estiver dentro de msgTipo for sucesso &&(entao) mostre ... */}
-                    {msgTipo === 'sucesso' && <span><strong>WoW! </strong>Usuario cadastrado com sucesso! </span>}
-                    {msgTipo === 'erro' && <span><strong>Ops! </strong> {msg} </span>}
-                </div>
-            </form>
-        </div>
+                    {
+                        carregando ? <div className="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div>
+                            : <button onClick={cadastrar} type="button" className="w-100 btn btn-lg btn-cadastro">Cadastrar</button>
+                    }
+                    <div className="msg-login text-white text-center my-2">
+                        {/* Se oque estiver dentro de msgTipo for sucesso &&(entao) mostre ... */}
+                        {msgTipo === 'sucesso' && <span><strong>WoW! </strong>Usuario cadastrado com sucesso! </span>}
+                        {msgTipo === 'erro' && <span><strong>Ops! </strong> {msg} </span>}
+                    </div>
+                </form>
+            </div>
+        </>
     )
 }
 

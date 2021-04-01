@@ -1,10 +1,10 @@
 .form-login {
-    max-width: 650px;
+    min-width: 350px;
 }
 
 .btn-cadastro {
-    background-color: #614ea6;
-    color: #fff;
+    background-color: #fff;
+    color: #614ea6;
     transition: .1s ease-in;
 }
 

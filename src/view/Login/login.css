@@ -6,6 +6,10 @@
     height: 100vh;
 }
 
+.form-signin {
+    min-width: 350px;
+}
+
 .btn-login {
     background-color: #fff;
     color: #614ea6;

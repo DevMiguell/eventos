@@ -7,6 +7,7 @@ import store from '../src/store/'
 import Login from './view/Login'
 import NovoUsuario from './view/Usuario-novo'
 import Home from './view/Home'
+import UsuarioRecuperarSenha from './view/Usuario-recuperar-senha'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/novousuario' component={NovoUsuario} />
           <Route exact path='/' component={Home} />
+          <Route exact path='/usuariorecuperarsenha' component={UsuarioRecuperarSenha} />
         </Router>
       </Provider>
     </>

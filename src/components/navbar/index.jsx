@@ -8,7 +8,9 @@ function Navbar() {
     const dispatch = useDispatch()
     return (
         <nav className="navbar navbar-expand-lg">
-            <Link to="/" className="navbar-brand text-white">Eventos</Link>
+            <Link to="/" className="navbar-brand text-white">
+            <img src="https://www.flaticon.com/svg/vstatic/svg/759/759981.svg?token=exp=1617313951~hmac=b64eef7536190aff43fdd595385694fe" width="40px" alt=""/>
+            </Link>
             <button className="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon text-black"></span>
                 {/* Arrumar botão no mobile */}
@@ -34,10 +36,10 @@ function Navbar() {
                             </>
                             :
                             <>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <Link className="nav-link" to="novousuario">Cadastrar</Link>
-                                </li>
-                                <li className="nav-item">
+                                </li> */}
+                                <li className="nav-item login">
                                     <Link className="nav-link" to="login">Login</Link>
                                 </li>
                             </>

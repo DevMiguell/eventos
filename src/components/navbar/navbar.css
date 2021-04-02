@@ -17,3 +17,26 @@
 .nav-item a:hover{
     color: #f21667;
 }
+
+.btn-log a{
+    color: #614ea6;
+    transition: .1s ease-in;
+}
+
+.btn-log:hover {
+    background-color: #f21667;
+    color: #fff;
+}
+
+.login a{
+    background-color: #fff;
+    border-radius: 5px;
+    color: #614ea6;
+    font-weight: bold;
+    transition: .1s ease-in;
+}
+
+.login a:hover{
+    background-color: #f21667;
+    color: #fff;
+}

@@ -10,6 +10,7 @@ function EventoCard({id, img, titulo, detalhes, visualizacoes}){
 
     useEffect(() => {
         firebase.storage().ref(`imagens/${img}`).getDownloadURL().then(url => setUrlImagem(url));
+        // eslint-disable-next-line
     }, [urlImagem]);
 
     return(

@@ -32,8 +32,8 @@ function EventoDetalhes(props) {
         } else {
             firebase.storage().ref(`imagens/${evento.foto}`).getDownloadURL().then(url => setUrlImg(url))
         }
+        // eslint-disable-next-line
     }, [])
-
     return (
         <>
             <Navbar />

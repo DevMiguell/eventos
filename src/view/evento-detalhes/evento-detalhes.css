@@ -14,12 +14,9 @@
 
 }
 
-.btn-editar i{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    color: #f21667;
-    transition: .3s ease-in;
+.flex{
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn-editar i:hover{

@@ -21,7 +21,7 @@ function App() {
           <Route exact path='/novousuario' component={NovoUsuario} />
           <Route exact path='/' component={Home} />
           <Route exact path='/usuariorecuperarsenha' component={UsuarioRecuperarSenha} />
-          <Route exact path='/eventoscadastro' component={EventoCadastro} />
+          <Route exact path='/eventocadastro' component={EventoCadastro} />
           <Route path='/eventodetalhes/:id' component={EventoDetalhes} />
         </Router>
       </Provider>

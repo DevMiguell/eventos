@@ -12,15 +12,18 @@ import EventoCard from '../../components/evento-card'
 function Home() {
 
     const [eventos, setEventos] = useState([]);
+    const [pesquisa, setPesquisa] = useState('');
     let listaeventos = [];
 
     useEffect(() => {
         firebase.firestore().collection('eventos').get().then(async (resultado) => {
             await resultado.docs.forEach(doc => {
-                listaeventos.push({
-                    id: doc.id,
-                    ...doc.data()
-                })
+                if (doc.data().titulo.indexOf(pesquisa) >= 0) {
+                    listaeventos.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+                }
             })
             setEventos(listaeventos);
         })
@@ -29,11 +32,15 @@ function Home() {
     return (
         <>
             <Navbar />
-            <h1>{useSelector(state => state.usuarioEmail)}</h1>
-            <h1>Logado: {useSelector(state => state.usuarioLogado)}</h1>
+            <div className="container">
+                <div className="row p-3 ">
+                    <h2 className="p-5">Eventos Publicados</h2>
+                    <input onChange={(e) => setPesquisa(e.target.value)} type="text" className="form-control text-center" placeholder="Pesquisar evento pelo título..." />
+                </div>
 
-            <div className="row p-3">
-                {eventos.map(item => <EventoCard key={item.id} id={item.id} img={item.foto} titulo={item.titulo} detalhes={item.detalhes} visualizacoes={item.visualizacoes} />)}
+                <div className="row p-4">
+                    {eventos.map(item => <EventoCard key={item.id} id={item.id} img={item.foto} titulo={item.titulo} detalhes={item.detalhes} visualizacoes={item.visualizacoes} />)}
+                </div>
             </div>
         </>
     )

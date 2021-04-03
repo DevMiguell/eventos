@@ -90,7 +90,7 @@ function atualizar(){
     return(
         <>
         <Navbar/>
-        <div className="col-12 mt-5">
+        <div className="col-12 mt-5 container">
             <div className="row">
                 <h3 className="mx-auto font-weight-bold">{props.match.params.id ? 'Atualizar Evento' : 'Novo Evento'}</h3>
             </div>

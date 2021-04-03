@@ -136,7 +136,7 @@ function atualizar(){
 
                 <div className="row">               
                 {
-                    carregando > 0 ? <div class="spinner-border text-danger mx-auto" role="status"><span class="sr-only">Loading...</span></div>
+                    carregando > 0 ? <div class="spinner-border text-danger mx-auto" role="status"><span class="sr-only"></span></div>
                     : <button onClick={props.match.params.id ? atualizar : cadastrar} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-cadastro">{props.match.params.id ? 'Atualizar Evento' : 'Publicar Evento'}</button>
                 }
                 </div>

@@ -9,24 +9,41 @@ import './home.css'
 import Navbar from '../../components/navbar'
 import EventoCard from '../../components/evento-card'
 
-function Home() {
+function Home({ match }) {
 
     const [eventos, setEventos] = useState([]);
     const [pesquisa, setPesquisa] = useState('');
+    const usuarioEmail = useSelector(state => state.usuarioEmail);
     let listaeventos = [];
 
     useEffect(() => {
-        firebase.firestore().collection('eventos').get().then(async (resultado) => {
-            await resultado.docs.forEach(doc => {
-                if (doc.data().titulo.indexOf(pesquisa) >= 0) {
-                    listaeventos.push({
-                        id: doc.id,
-                        ...doc.data()
-                    })
-                }
+        if (match.params.parametro) {
+            firebase.firestore().collection('eventos').where('usuario', '==', usuarioEmail).get().then(async (resultado) => {
+                await resultado.docs.forEach(doc => {
+                    if (doc.data().titulo.indexOf(pesquisa) >= 0) {
+                        listaeventos.push({
+                            id: doc.id,
+                            ...doc.data()
+                        })
+                    }
+                })
+
+                setEventos(listaeventos);
+            });
+
+        } else {
+            firebase.firestore().collection('eventos').get().then(async (resultado) => {
+                await resultado.docs.forEach(doc => {
+                    if (doc.data().titulo.indexOf(pesquisa) >= 0) {
+                        listaeventos.push({
+                            id: doc.id,
+                            ...doc.data()
+                        })
+                    }
+                })
+                setEventos(listaeventos);
             })
-            setEventos(listaeventos);
-        })
+        }
     })
 
     return (

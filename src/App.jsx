@@ -20,6 +20,7 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/novousuario' component={NovoUsuario} />
           <Route exact path='/' component={Home} />
+          <Route path='/eventos/:parametro' component={Home} />
           <Route exact path='/usuariorecuperarsenha' component={UsuarioRecuperarSenha} />
           <Route exact path='/eventocadastro' component={EventoCadastro} />
           <Route path='/eventodetalhes/:id' component={EventoDetalhes} />

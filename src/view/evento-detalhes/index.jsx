@@ -41,7 +41,7 @@ function EventoDetalhes(props){
             {excluido ? <Redirect to='/' /> : null}
 
 
-            <div className="container-fluid">
+            <div className="container container-fluid my-4">
                 {
 
                 carregando ? <div className="row mt-5"> <div class="spinner-border text-danger mx-auto" role="status"><span class="sr-only"></span></div> </div>
